@@ -48,6 +48,8 @@ urllib3==1.26.12
 zope.interface==5.4.0
 
 
+
+
 создаем виртуальное окружение чтоб работать только в той области которую мы поставили для проэкта
 
 python -m venv 'имя виртуальной среды'
@@ -63,3 +65,68 @@ django-admin startproject 'название проекта или папки'
 Далее мы заходим в дирректорий mkdocs и с помощью команды 'mkdocs serve' запускаем сайт с документацией
 устанавливаем дополнительные библиотеки 'mkdocs-awesome-pages-plugin' , 'mkdocs-material', 
     'mkdocs-material-extensions'
+чтобы встроить эти библиотеки необходимо запустить 'mkdocs build'
+далее опять 'mkdocs serve'
+
+
+
+Работаем с файлом settings.py
+1. Добавляем вверху файла "# -*- coding utf-8 -*-" для того чтобы можно было писать на русском.
+
+2. Переходим в отладку кода и нажимаем "создать файл launch.json". Сначала выдаст окно нужно нажать "Python", 
+а после нажать "Django". Введите в строке "programm" полный путь до указанного файла,
+запускаем (может попросить выбрать интерпритатор, выберите вирт. среду). Не расстраиваемся если выдало 
+ошибку, сейчас мы это исправим. (советую открыть ссылку в браузере).
+
+3. Набираем команду "python manage.py collectstatic". Если выдает ошибку  
+"убедитесь в том что , PYTHONPATHверный и тому подоное" необходимо установить Django в директорий 
+файла manage.py, чтобы избежать ошибки. (Установи 4.1.1)
+
+
+4. настраиваем статические файлы а именно 
+    #https://docs.djangoproject.com/en/4.1/ref/settings/#static-root
+    STATIC_ROOT=os.path.join(BASE_DIR,'static')
+
+5. запустите файл setting.py чтобы подтвердить действия 
+
+6. Запустите "py manage.py collectstatic". Введите "yes", вы подтвердите, что хотите собрать файлы. 
+
+7. Допустим у вас появились файлы, которые не вошли в "STATIC_ROOT". Существует такое же приложение 
+    https://docs.djangoproject.com/en/4.1/ref/settings/#staticfiles-dirs
+    STATICFILES_DIRS = [
+    "/home/special.polls.com/polls/static",
+    ]
+
+8. Добавляем последний штрих и дотисываем 
+    #https://docs.djangoproject.com/en/4.1/ref/settings/#staticfiles-finders
+    STATIC_FINDER = [
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',]
+
+9. Допустим нам необходимо, чтобы пользователь мог фхранить, загружать и обновлять 
+медиа файлы разного рода тогда добавим, после "STATIC_FINDER" сточки
+"MEDIA_ROOT= os.path.join(BASE_DIR, 'media') # наша папка для всякого рода медиа"
+"MEDIA_URL= '/media/' # как она будет отображаться"
+
+
+
+Работаем с файлом urls.py
+1. Открываем файл "urls.py".
+
+2. После последнего "from" пропишите строчку "from django.conf.urls.static import static".
+Если будет подчеркнуто "setting", то пропишите "from django.conf import settings"
+
+
+3. Добавляем сторку в конце 
+"if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)".
+
+Чтобы продолжить работать с проектом необходимо провести миграцию:
+для этого вводим и запускаем
+"py manage.py makemigrations". Должно выдать "No changes detected"
+"py manage.py migrate". Должны создаться таблицы 
+
+
+В терминале откройте дирректорий файлф "manage.py" и введите "py manage.py createsuperuser".
+Это для того чтобы создать учетную запись администратора. 
+Елси выдаст ошибку, то лучше провести миграцию еще раз
