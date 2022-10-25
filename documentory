@@ -89,7 +89,7 @@ django-admin startproject 'название проекта или папки'
 
 5. запустите файл setting.py чтобы подтвердить действия 
 
-6. Запустите "py manage.py collectstatic". Введите "yes", вы подтвердите, что хотите собрать файлы. 
+6. Запустите "py manage.py collectstatic". Введите "yes", вы подтвердите, что хотите собрать файлы.     в уроке это ST 
 
 7. Допустим у вас появились файлы, которые не вошли в "STATIC_ROOT". Существует такое же приложение 
     https://docs.djangoproject.com/en/4.1/ref/settings/#staticfiles-dirs
@@ -123,9 +123,9 @@ django-admin startproject 'название проекта или папки'
 
 Чтобы продолжить работать с проектом необходимо провести миграцию:
 для этого вводим и запускаем
-"py manage.py makemigrations". Должно выдать "No changes detected"
-"py manage.py migrate". Должны создаться таблицы 
-
+"py manage.py makemigrations". Должно выдать "No changes detected"      в уроке это MA
+"py manage.py migrate". Должны создаться таблицы                        в уроке это MI
+                                                                        
 
 В терминале откройте дирректорий файлф "manage.py" и введите "py manage.py createsuperuser".
 Это для того чтобы создать учетную запись администратора. 
@@ -137,8 +137,28 @@ django-admin startproject 'название проекта или папки'
 
 2. необходимо добавить его в "INSTALLED_APPS"
 
-3.
+пропишем в "INSTALLED_APPS" установленные библиотеки
+необходимо в правильной последовательности вносить туду библиотеки
+лучше смотреть в документации как устанавливать библиотеки
+
+1. Начнем с "django_cleanup"
+
+2. Прописываем в "INSTALLED_APPS" 'django_cleanup.apps.CleanupConfig'
+(смотрите бывают пишут место расположение библиотеки)
+
+
+
+Делаем оформление сайта
+с этим нам поможет библиотека "django_crispy_forms"
+
+1. Добавляем в "INSTALLED_APPS" 'crispy_forms'
+
+2. Пописываем в "setting" "CRISPY_TEMPLATE_PACK= 'uni_form'"
+
+3. запускаем статику
+
 
 !не стоит переименновывать файлы шаблоны
+
 
 templates воввсем проекте будет находить шаблоны

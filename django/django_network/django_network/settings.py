@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms'
+    'blog.apps.BlogConfig', # когда применяем сигналы метки
+    # cleanup должна быть последней
+    'django_cleanup.apps.CleanupConfig'
+
 ]
 
 MIDDLEWARE = [
@@ -143,3 +148,10 @@ MEDIA_URL= '/media/' # как она будет отображаться
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# django-crispy-forms
+# https://django-crispy-forms.readthedocs.io/en/latest/install.html
+# можно добавить разные пакеты шаблонов на пример CRISPY_TEMPLATE_PACK = 'Bootstrap 5'
+CRISPY_TEMPLATE_PACK= 'uni_form'
+
+#end django-crispy-forms
