@@ -8,7 +8,7 @@
             "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "program": "C:\\Users\\Aleksandr\\django\\my_django_project\\django\\django_network\\manage.py",
+            "program": "D:\\DDDrilll\\my_django_project\\django\\django_network\\manage.py",
             "args": [
                 "runserver"
             ],

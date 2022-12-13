@@ -14,6 +14,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os 
 from pathlib import Path
 
+from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
+
+env_path=Path('.')/ 'test.env'
+load_dotenv(dotenv_path=env_path)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,8 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y*0hgw$l@d-@5a#y6oy%9y!rmwx0xd$1+2-364yn4$!oi#alco'
-
+#SECRET_KEY = 'django-insecure-y*0hgw$l@d-@5a#y6oy%9y!rmwx0xd$1+2-364yn4$!oi#alco'
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -40,8 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms'
-    'blog.apps.BlogConfig', # когда применяем сигналы метки
+    'crispy_forms',
+    # когда применяем сигналы метки
     # cleanup должна быть последней
     'django_cleanup.apps.CleanupConfig'
 
@@ -152,6 +158,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # django-crispy-forms
 # https://django-crispy-forms.readthedocs.io/en/latest/install.html
 # можно добавить разные пакеты шаблонов на пример CRISPY_TEMPLATE_PACK = 'Bootstrap 5'
-CRISPY_TEMPLATE_PACK= 'uni_form'
+CRISPY_TEMPLATE_PACK= 'uni-form'
 
 #end django-crispy-forms
