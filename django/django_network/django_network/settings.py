@@ -14,11 +14,16 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os 
 from pathlib import Path
 
+#python-dotenv
+# https://pypi.org/project/python-dotenv/
+
 from dotenv import load_dotenv
 from django.contrib.messages import constants as messages
-
+# .env в корне проекта
 env_path=Path('.')/ 'test.env'
 load_dotenv(dotenv_path=env_path)
+
+#end dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,7 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #packge
+    'ckeditor',
     'crispy_forms',
+
+
     # когда применяем сигналы метки
     # cleanup должна быть последней
     'django_cleanup.apps.CleanupConfig'
@@ -161,3 +170,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK= 'uni-form'
 
 #end django-crispy-forms
+
+# django-ckeditor
+#https://pypi.org/project/django-ckeditor/
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 300,
+    },
+}
+# end django-ckeditor
