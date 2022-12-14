@@ -162,3 +162,30 @@ django-admin startproject 'название проекта или папки'
 
 
 templates воввсем проекте будет находить шаблоны
+
+
+добавление библиотеки сопоставлений dotenv
+она сопоставляет  переменные с одного файла
+
+1. pip install dotenv
+
+2. "from dotenv import load_dotenv
+    from django.contrib.messages import constants as messages"
+    добавляем в начало файла setting
+
+3. создаем файл ".env" (скрытый файл)
+
+4. Прописываем путь к этой дирректории 
+    "env_path=Path('.')/ 'test.env'
+    load_dotenv(dotenv_path=env_path)"
+
+5. вписываем в ".env" значение ключа "Secret_key"
+    а в "setting" пропишем "SECRET_KEY = os.getenv('SECRET_KEY')"
+
+Поставим django_ckeditor и django-bracer
+
+1. pip install django-ckeditor
+
+2. заходим на сайт из ссылки и копируем "CKEDITOR_CONFIGS"
+
+3. Запускаем миграцию и должно в папке "static" создать папку "ckeditor"
